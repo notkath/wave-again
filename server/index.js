@@ -1,4 +1,4 @@
-require("dotenv").config();
+const dotenv= require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Get all events
-app.use('/',require('./router/authRouter'));
+app.use('/',require('./routes/authRouter'));
 app.get("/api/events", async (req, res) => {
   try {
     const events = await Events.find({});

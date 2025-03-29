@@ -1,6 +1,6 @@
 
 
 const test = (req, res) => {
-  res.json('Hello World');
-}
-module.exports = { test };
+    res.json('Hello World').status(200);
+  }
+  module.exports = { test };

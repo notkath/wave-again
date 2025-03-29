@@ -31,7 +31,7 @@ e.preventDefault()
         </select>
         <button type="submit">Register</button>
       </form>
-     <Link to="/login"> Alreasy have an Account?Login</Link>
+     <Link to="/login"> Already have an Account?Login</Link>
     </div>
   )
 }
