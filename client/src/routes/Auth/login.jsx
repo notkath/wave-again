@@ -1,31 +1,60 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const login = () => {
+const Login = () => {
+  const [data, setData] = useState({ username: '', password: '' });
+  const [error, setError] = useState('');
 
-    const [data,setData]=useState({
-        email:'',
-        password:'',
-    })
+  const loginUser = async (e) => {
+    e.preventDefault();
+    setError(''); // Clear previous errors
 
-    const loginUser = (e) => {
-        e.preventDefault()
-        axios.get('/')
+    try {
+      const res = await axios.post(
+        'http://localhost:8000/api/auth/login',
+        data,
+        {
+          withCredentials: true, // ✅ Ensures cookies are sent
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+
+      localStorage.setItem('token', res.data.token); // Save token
+      alert('Login successful!');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Login failed');
     }
-  return (
-    <div>
-        <form onSubmit={loginUser}>
-            <h2>Login</h2>
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" value={data.email} onChange={(e) => setData({...data, email: e.target.value})} required />
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" value={data.password} onChange={(e) => setData({...data, password: e.target.value})} required />
-            <button type="submit">Login</button>
-        </form>
-      
-    </div>
-  )
-}
+  };
 
-export default login
+  return (
+    <div className="max-w-md mx-auto mt-10 p-5 border rounded shadow">
+      <h2 className="text-2xl font-bold mb-4">Login</h2>
+      <form onSubmit={loginUser} className="space-y-4">
+        <label className="block">Username</label>
+        <input
+          type="text"
+          value={data.username}
+          onChange={(e) => setData({ ...data, username: e.target.value })}
+          required
+          className="w-full p-2 border rounded"
+        />
+
+        <label className="block">Password</label>
+        <input
+          type="password"
+          value={data.password}
+          onChange={(e) => setData({ ...data, password: e.target.value })}
+          required
+          className="w-full p-2 border rounded"
+        />
+
+        {error && <p className="text-red-500">{error}</p>}
+        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+          Login
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Login;

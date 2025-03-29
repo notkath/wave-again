@@ -6,13 +6,24 @@ const app = express();
 const port = process.env.PORT || 8000;
 const connectDB = require("./connectDB");
 const Events = require("./models/Events");
+const authRoutes = require("./routes/authRouter");
+const userRoutes = require("./routes/userRoutes");
+
 
 connectDB();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173", // Allow only this frontend URL
+  credentials: true, 
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//Routes
+app.use("/api/auth",authRoutes);
+app.use("/api/users",userRoutes);
+
 
 // Get all events
 app.use('/',require('./routes/authRouter'));
