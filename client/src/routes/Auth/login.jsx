@@ -1,28 +1,34 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
-  const [data, setData] = useState({ username: '', password: '' });
-  const [error, setError] = useState('');
+  const [data, setData] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
 
   const loginUser = async (e) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
+    setError(""); // Clear previous errors
 
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/auth/login',
+        "http://localhost:8000/api/auth/login",
         data,
         {
-          withCredentials: true, // ✅ Ensures cookies are sent
-          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
         }
       );
 
-      localStorage.setItem('token', res.data.token); // Save token
-      alert('Login successful!');
+      // Store token & role in localStorage
+      localStorage.setItem("user", JSON.stringify({ 
+        token: res.data.token, 
+        role: res.data.role 
+      }));
+
+      alert("Login successful!");
+      window.location.reload(); // Refresh to update the Header
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+      setError(err.response?.data?.message || "Login failed");
     }
   };
 

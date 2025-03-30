@@ -35,7 +35,7 @@ const test = (req, res) => {
       return res.status(400).json({message: 'Invalid username or password'});
     }
     const token = jwt.sign(
-      {id: user._id}, 
+      {id: user._id, role: user.role}, 
       process.env.JWT_SECRET,
       {expiresIn: '1h'});
     res.status(200).json({

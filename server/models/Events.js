@@ -22,6 +22,15 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'User', // Reference to the User model
+        required: true
+    },
+    participants: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User' // Array of user references
+    }],
     createdAt: {
         type: Date,
         default: Date.now
