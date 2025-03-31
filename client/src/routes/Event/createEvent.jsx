@@ -39,7 +39,7 @@ const CreateEvent = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure token is sent
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData), // No `createdBy` field needed
       });
 
       const data = await response.json();

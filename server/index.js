@@ -8,6 +8,8 @@ const connectDB = require("./connectDB");
 const Events = require("./models/Events");
 const authRoutes = require("./routes/authRouter");
 const userRoutes = require("./routes/userRoutes");
+const jwt = require("jsonwebtoken");
+const eventRoutes = require("./routes/events");
 
 
 connectDB();
@@ -23,6 +25,7 @@ app.use(express.json());
 //Routes
 app.use("/api/auth",authRoutes);
 app.use("/api/users",userRoutes);
+app.use("/api/events", eventRoutes);
 
 
 // Get all events
@@ -87,7 +90,9 @@ app.get("*", (req, res) => {
   res.status(404).json({ message: "Page not found" });
 });
 
+
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+

@@ -8,7 +8,7 @@ const Login = () => {
   const loginUser = async (e) => {
     e.preventDefault();
     setError(""); // Clear previous errors
-
+  
     try {
       const res = await axios.post(
         "http://localhost:8000/api/auth/login",
@@ -18,14 +18,17 @@ const Login = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-
+  
       // Store token & role in localStorage
-      localStorage.setItem("user", JSON.stringify({ 
-        token: res.data.token, 
-        role: res.data.role 
-      }));
-
-      alert("Login successful!");
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userRole", res.data.role);
+      localStorage.setItem("userId", res.data._id); 
+ 
+      // Store the user's role
+      console.log("Token stored in localStorage:", localStorage.getItem("token"));
+      console.log("User role stored in localStorage:", localStorage.getItem("userRole"));
+  
+      alert(`Login successful as ${res.data.role}`);
       window.location.reload(); // Refresh to update the Header
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
