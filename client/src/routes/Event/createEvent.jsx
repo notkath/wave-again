@@ -63,22 +63,82 @@ const CreateEvent = () => {
     );
   }
 
+  // return (
+  //   <div className="max-w-lg mx-auto mt-10 p-5 border rounded shadow">
+  //     <h2 className="text-2xl font-bold mb-4">Create a New Event</h2>
+  //     {message && <p className="text-red-500">{message}</p>}
+  //     <form onSubmit={handleSubmit} className="space-y-4">
+  //       <input type="text" name="title" placeholder="Event Title" value={formData.title} onChange={handleChange} className="w-full p-2 border rounded" required />
+  //       <textarea name="description" placeholder="Event Description" value={formData.description} onChange={handleChange} className="w-full p-2 border rounded" required />
+  //       <input type="datetime-local" name="start" value={formData.start} onChange={handleChange} className="w-full p-2 border rounded" required />
+  //       <input type="datetime-local" name="end" value={formData.end} onChange={handleChange} className="w-full p-2 border rounded" required />
+  //       <input type="text" name="location" placeholder="Event Location" value={formData.location} onChange={handleChange} className="w-full p-2 border rounded" required />
+  //       <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+  //         Create Event
+  //       </button>
+  //     </form>
+  //   </div>
+  // );
   return (
-    <div className="max-w-lg mx-auto mt-10 p-5 border rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Create a New Event</h2>
-      {message && <p className="text-red-500">{message}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input type="text" name="title" placeholder="Event Title" value={formData.title} onChange={handleChange} className="w-full p-2 border rounded" required />
-        <textarea name="description" placeholder="Event Description" value={formData.description} onChange={handleChange} className="w-full p-2 border rounded" required />
-        <input type="datetime-local" name="start" value={formData.start} onChange={handleChange} className="w-full p-2 border rounded" required />
-        <input type="datetime-local" name="end" value={formData.end} onChange={handleChange} className="w-full p-2 border rounded" required />
-        <input type="text" name="location" placeholder="Event Location" value={formData.location} onChange={handleChange} className="w-full p-2 border rounded" required />
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+    <div className="create-event-container">
+      <h2 className="form-title">Create a New Event</h2>
+      {message && <p className="error-message">{message}</p>}
+  
+      <form onSubmit={handleSubmit} className="create-event-form">
+        <input
+          type="text"
+          name="title"
+          placeholder="Event Title"
+          value={formData.title}
+          onChange={handleChange}
+          className="form-input"
+          required
+        />
+  
+        <textarea
+          name="description"
+          placeholder="Event Description"
+          value={formData.description}
+          onChange={handleChange}
+          className="form-textarea"
+          required
+        />
+  
+        <input
+          type="datetime-local"
+          name="start"
+          value={formData.start}
+          onChange={handleChange}
+          className="form-input"
+          required
+        />
+  
+        <input
+          type="datetime-local"
+          name="end"
+          value={formData.end}
+          onChange={handleChange}
+          className="form-input"
+          required
+        />
+  
+        <input
+          type="text"
+          name="location"
+          placeholder="Event Location"
+          value={formData.location}
+          onChange={handleChange}
+          className="form-input"
+          required
+        />
+  
+        <button type="submit" className="submit-btn">
           Create Event
         </button>
       </form>
     </div>
   );
+  
 };
 
 export default CreateEvent;

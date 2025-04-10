@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/react.svg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,37 +15,38 @@ const Header = () => {
   };
 
   return (
-    <header className="flex justify-between items-center p-4 bg-gray-800 text-white shadow-md">
-      <Link to="/" className="flex items-center space-x-2">
-        <img src={logo} alt="ReactJs" className="h-8 w-8" />
-        <span className="text-xl font-bold">ReactJSS</span>
+    <header className="header">
+      <Link to="/" className="logo">
+        <span>BlueHope</span>
       </Link>
-      <nav className="flex space-x-6">
-        <NavLink to="/" className="hover:underline">Home</NavLink>
-        <NavLink to="/events" className="hover:underline">Events</NavLink>
-        <NavLink to="/about" className="hover:underline">About</NavLink>
+      <nav className="nav">
+        <NavLink to="/" className="nav-link">Home</NavLink>
+        <NavLink to="/events" className="nav-link">Events</NavLink>
+        <NavLink to="/about" className="nav-link">About</NavLink>
         {isLoggedIn ? (
-          <div className="flex items-center space-x-4">
-            <span className="text-green-400">Logged in as {userRole}</span>
-            <button
-              onClick={handleLogout}
-              className="px-3 py-1 bg-red-500 hover:bg-red-600 rounded"
-            >
-              Logout
-            </button>
+          <div className="user-info">
+            <span className="user-role">Logged in as {userRole}</span>
+            <button onClick={handleLogout} className="logout-button">Logout</button>
           </div>
         ) : (
           <>
-            <NavLink to="/register" className="hover:underline">Register</NavLink>
-            <NavLink to="/login" className="hover:underline">Login</NavLink>
-            {userRole === "admin" && <NavLink to="/admin" className="hover:underline">Admin</NavLink>}
-            {userRole && <NavLink to="/user" className="hover:underline">User</NavLink>}
+            <NavLink to="/register" className="nav-link">Register</NavLink>
+            <NavLink to="/login" className="nav-link">Login</NavLink>
+            {userRole === "admin" && (
+              <NavLink to="/admin" className="nav-link">Admin</NavLink>
+            )}
+            {userRole && (
+              <NavLink to="/user" className="nav-link">User</NavLink>
+            )}
           </>
         )}
       </nav>
       
     </header>
+    
   );
 };
+
+
 
 export default Header;

@@ -48,61 +48,106 @@ const Register = () => {
     }
   };
 
-  return (
-    <div className="max-w-lg mx-auto mt-10 p-5 border rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Register</h2>
-      {message && <p className={message.includes("successful") ? "text-green-500" : "text-red-500"}>{message}</p>}
+  // return (
+  //   <div className="max-w-lg mx-auto mt-10 p-5 border rounded shadow">
+  //     <h2 className="text-2xl font-bold mb-4">Register</h2>
+  //     {message && <p className={message.includes("successful") ? "text-green-500" : "text-red-500"}>{message}</p>}
       
+  //     {isRegistered ? (
+  //       <button
+  //         onClick={() => navigate("/login")}
+  //         className="w-full bg-green-500 text-white p-2 rounded mt-2"
+  //       >
+  //         Go to Login
+  //       </button>
+  //     ) : (
+  //       <form onSubmit={handleSubmit} className="space-y-4">
+  //         <input
+  //           type="text"
+  //           name="username" // Changed from name to username
+  //           placeholder="Username"
+  //           value={formData.username} // Changed from name to username
+  //           onChange={handleChange}
+  //           className="w-full p-2 border rounded"
+  //           required
+  //         />
+  //         <input
+  //           type="password"
+  //           name="password"
+  //           placeholder="Password"
+  //           value={formData.password}
+  //           onChange={handleChange}
+  //           className="w-full p-2 border rounded"
+  //           required
+  //         />
+  //         <select
+  //           name="role"
+  //           value={formData.role}
+  //           onChange={handleChange}
+  //           className="w-full p-2 border rounded"
+  //         >
+  //           <option value="user">User</option>
+  //           <option value="admin">Admin</option>
+  //         </select>
+  //         <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+  //           Register
+  //         </button>
+  //       </form>
+  //     )}
+      
+  //     <p className="mt-4 text-center">
+  //       Already have an account?{' '}
+  //       <Link to="/login" className="text-blue-500 underline">
+  //         Login here
+  //       </Link>
+  //     </p>
+  //   </div>
+  // );
+  return (
+    <div className="register-container">
+      <h2 className="register-title">Register</h2>
+  
+      {message && (
+        <p className={message.includes("successful") ? "register-success" : "register-error"}>
+          {message}
+        </p>
+      )}
+  
       {isRegistered ? (
         <button
           onClick={() => navigate("/login")}
-          className="w-full bg-green-500 text-white p-2 rounded mt-2"
+          className="register-goto-btn"
         >
           Go to Login
         </button>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="username" // Changed from name to username
-            placeholder="Username"
-            value={formData.username} // Changed from name to username
+        <form onSubmit={handleSubmit} className="register-form">
+          <input type="text"  name="username" placeholder="Username" value={formData.username} onChange={handleChange}
+            className="register-input" required/>
+          <input type="password"  name="password"  placeholder="Password" value={formData.password} onChange={handleChange}
+            className="register-input" required/>
+          <select  name="role" value={formData.role}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          />
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="register-select"
           >
             <option value="user">User</option>
             <option value="admin">Admin</option>
           </select>
-          <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+          <button type="submit" className="register-btn">
             Register
           </button>
         </form>
       )}
-      
-      <p className="mt-4 text-center">
-        Already have an account?{' '}
-        <Link to="/login" className="text-blue-500 underline">
+  
+      <p className="register-login-link">
+        Already have an account?{" "}
+        <Link to="/login" className="login-redirect">
           Login here
         </Link>
       </p>
     </div>
   );
+  
 };
 
 export default Register;
