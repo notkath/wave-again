@@ -7,7 +7,7 @@ const {register, login} = require("../controllers/authController");
 router.use(cors(
     {
         credentials: true,
-        origin: "https://wave-again-aks2.vercel.app/"   
+        origin: "https://wave-again-frontend.onrender.com"   
     }
 ));
 

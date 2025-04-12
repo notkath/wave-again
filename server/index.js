@@ -16,7 +16,7 @@ connectDB();
 
 // Middlewares
 app.use(cors({
-  origin: "https://wave-again-aks2.vercel.app/", // Allow only this frontend URL
+  origin: "https://wave-again-frontend.onrender.com", // Allow only this frontend URL
   credentials: true, 
 }));
 app.use(express.urlencoded({ extended: true }));
