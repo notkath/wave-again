@@ -8,7 +8,7 @@ const UserPage = () => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8000/api/users/user", {
+        const response = await axios.get("https://wave-again.onrender.com/api/users/user", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

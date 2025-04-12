@@ -22,7 +22,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/register",
+        "https://wave-again.onrender.com/api/auth/register",
         formData,
         { 
           withCredentials: true,

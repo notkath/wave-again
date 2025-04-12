@@ -13,7 +13,7 @@ import UserPage from './routes/Auth/userpage';
 import axios from 'axios';
 
 
-axios.defaults.baseURL='http://localhost:8000';
+axios.defaults.baseURL="https://wave-again.onrender.com";
 axios.defaults.withCredentials = true;
 
 function App() {

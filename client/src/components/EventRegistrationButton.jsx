@@ -16,7 +16,7 @@ const EventRegistrationButton = ({ eventId }) => {
 
   const checkRegistrationStatus = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/events/${eventId}`);
+      const response = await fetch(`https://wave-again.onrender.com/api/events/${eventId}`);
       if (!response.ok) throw new Error("Failed to fetch event");
       
       const data = await response.json();

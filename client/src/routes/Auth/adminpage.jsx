@@ -8,7 +8,7 @@ const AdminPage = () => {
     const fetchAdminData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8000/api/users/admin", {
+        const response = await axios.get("https://wave-again.onrender.com/api/users/admin", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

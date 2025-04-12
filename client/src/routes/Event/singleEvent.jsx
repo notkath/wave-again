@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 const SingleEvent = () => {
   const { id } = useParams();
-  const baseUrl = `http://localhost:8000/api/events/${id}`;
+  const baseUrl = `https://wave-again.onrender.com/api/events/${id}`;
 
   const [event, setEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
